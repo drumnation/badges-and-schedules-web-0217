@@ -16,25 +16,10 @@ end
 
 # should return a list of welcome badges and room assignments
 def assign_rooms(attendees)
-  # create array to hold attendee/room number key/value pairs
-  room_assignments = Array.new
-  # create an array to hold welcome message strings generated from the room_assignments array
-  room_assignment_welcome_messages = Array.new
-  # iterate through array of attendees to create an array of hashes pairing attendee with a room number
-  # increment room number for every new attendee, shovel a hash attendee/room pair to room_assignments
-  room_number = 0
-  attendees.each do |attendee|
-    room_number += 1
-    room_assignments << { attendee => room_number }
+room_number = 0
+  attendees.collect do |attendee|
+    "Hello, #{attendee}! You'll be assigned to room #{room_number += 1}!"
   end
-  # iterate through room_assignments, iterpolate hash data to shovel welcome messages to array
-  room_assignments.each do |rooms|
-    rooms.each do |key, value|
-      room_assignment_welcome_messages << "Hello, #{key}! You'll be assigned to room #{value}!"
-    end
-  end
-  # implicitly return the array of welcome message strings
-  room_assignment_welcome_messages
 end
 
 # should puts the list of badges and room assignments
